@@ -10,17 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tae-lim/CookBuk.git"
+    "url": "git+https://github.com/BigRedZone/CookBuk.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tae-lim/CookBuk/issues"
+    "url": "https://github.com/BigRedZone/CookBuk/issues"
   },
-  "homepage": "https://github.com/tae-lim/CookBuk#readme",
+  "homepage": "https://github.com/BigRedZone/CookBuk#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "jquery": "^3.3.1",
     "mongoose": "^5.2.13",
