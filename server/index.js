@@ -4,6 +4,8 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 
+const db = require('../database/index');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -15,6 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
+  db.save();
   res.end('POST request initiated!');
 });
 
