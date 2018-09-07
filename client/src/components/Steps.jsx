@@ -7,24 +7,48 @@ class Steps extends React.Component {
       nextClicked: false,
       prevClicked: false,
       firstClicked: false,
-      lastClicked: false
+      lastClicked: false,
+      currentStep: 1
     }
-    console.log(props);
+    this.clickNext = this.clickNext.bind(this);
+    this.clickPrev = this.clickPrev.bind(this);
+    this.clickFirst = this.clickNext.bind(this);
+    this.clickLast = this.clickNext.bind(this);
   }
+
+  clickNext() {
+    this.setState({
+      currentStep: this.state.currentStep + 1
+    });
+  }
+
+  clickPrev() {
+    this.setState({
+      currentStep: this.state.currentStep - 1
+    });
+  }
+
+  clickFirst() {
+
+  }
+
+  clickLast() {
+
+  }
+
   render() {
 
     return (
       <div>
-        <h3>CookBük</h3>
-        <a href="/homepage"><h1>Recipe Name</h1></a>
+        <h1>{this.props.recipe.name}</h1>
         <div>
-          <h2>Step 1:</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <button>First</button>
-          <button>Prev.</button>
-          <button>Next</button>
-          <button>Last</button>
-          <a href="/recipe">Exit</a>
+        <h2>Step {this.state.currentStep}:</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <button>First</button>
+        <button onClick={this.clickPrev}>Prev.</button>
+        <button onClick={this.clickNext}>Next</button>
+        <button>Last</button>
+        <a href="/recipe">Exit</a>
         </div>
       </div>
     )
