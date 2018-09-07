@@ -12,8 +12,12 @@ app.use(bodyParser.urlencoded());
 
 app.use(express.static(__dirname + '/../client/'));
 
-app.get('/', (req, res) => {
-  res.end('GET request initiated!');
+app.get('/home', (req, res) => {
+  res.send('Sending back for /home');
+});
+
+app.get('/recipe', (req, res) => {
+  res.send('Sending back for /recipe');
 });
 
 app.post('/', (req, res) => {
