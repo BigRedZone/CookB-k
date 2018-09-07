@@ -37,9 +37,7 @@ class Recipe extends React.Component {
     } else if (this.state.editClicked) {
       return (<EditDeleteRecipe 
         recipe={this.props.recipe} 
-        clickSubmit={this.clickEdit} 
-        update={this.props.update}
-        delete={this.props.delete}/>);
+        clickSubmit={this.clickEdit}/>);
     } else {
       return (
         <div>
@@ -48,11 +46,11 @@ class Recipe extends React.Component {
           <div>
             <h4>Recipe Overview</h4>
             <h3>This Recipe Includes...</h3>
-            <p>ingredient 1, ingredient 2, etc...</p>
+            <p>{this.props.recipe.ingredients.join(', ')}</p>
             <h3>Prep Time</h3>
-            <p>xxx mins</p>
+            <p>{this.props.recipe.prepTime}</p>
             <h3>Cook Time</h3>
-            <p>xxx mins</p>
+            <p>{this.props.recipe.cookTime}</p>
             <h3>Servings</h3>
             <p>xxx mins</p>
           </div>
