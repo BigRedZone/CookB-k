@@ -31,7 +31,8 @@ app.post('/recipe', (req, res) => {
 });
 
 app.put('/edit', (req, res) => {
-  db.Recipe.findOneAndUpdate(/*conditions, update*/)
+  console.log(req.body)
+  db.findOneAndUpdate({name: req.body.name}, req.body.change)
     .then(() => {
       console.log('put request successful!')
       res.end(/*Render entire database back to App*/)
@@ -39,7 +40,7 @@ app.put('/edit', (req, res) => {
 });
 
 app.delete('/delete', (req, res) => {
-  db.Recipe.deleteOne({id:''}, function(err) {
+  db.deleteOne(req.body, function(err) {
     if (err) {
       console.log('Could not delete due to: ', err)
     } else {
@@ -47,6 +48,7 @@ app.delete('/delete', (req, res) => {
       res.end(/*Render entire database back to App*/)
     }
   })
+
 })
 
 app.listen(port, () => {
