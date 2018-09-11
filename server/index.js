@@ -26,7 +26,21 @@ app.get('/homepage', (req, res) => {
 });
 
 app.post('/recipe', (req, res) => {
-  db.save(req.body);
+  db.find({name: req.body.name}, function(err, recipes) {
+    if (err) {
+      console.log(err)
+    } else if (recipes.length === 0) {
+      db.create(req.body, function(err, newRecipe) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(`${newRecipe} inserted into the db!`)
+        }
+      })
+    } else {
+      console.log(`${req.body.name} already exists in database!`)
+    }
+  })
   res.end('POST request initiated!');
 });
 
