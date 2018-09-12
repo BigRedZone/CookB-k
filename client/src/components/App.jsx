@@ -16,47 +16,37 @@ class App extends React.Component {
       view: 'login',
       recipeOTD: {},
       recipe: {},
-      recipes: sample
+      recipes: []
     };
 
     this.renderComponent = this.renderComponent.bind(this);
     this.changeView = this.changeView.bind(this);
     this.setRecipes = this.setRecipes.bind(this);
-    //this.fetch = this.fetch.bind(this);
     this.selectRecipe = this.selectRecipe.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.fetch('/', this.setRecipes);
-  // }
-
-  setRecipes(data) {
-    this.setState({
-      recipes: data
-    });
-  }
-
-  // fetch(url, callback) {
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: url
- 
-  //   })
-  //   .done((data) => {
-  //     callback(data);
-  //     console.log('GET SUCCESS');
-  //   })
-  //   .fail(() => {
-  //     console.log('GET FAILED');
-  //   });
-  // }
-
   changeView(view) {
     this.setState({
       view: view
     });
+  }
+
+  setRecipes(data) {
+    let allRecipes = data.map((recipe) => {
+      return { username: recipe.username,
+        name: recipe.name,
+        ingredients: recipe.ingredients.split(','),
+        steps: recipe.steps.split(','),
+        cookTime: recipe.cookTime,
+        prepTime: recipe.prepTime,
+        servings: recipe.servings}
+    })
+    this.setState({
+      recipes: allRecipes
+    });
+    console.log(this.state.recipes);
   }
 
   selectRecipe(recipe) {
@@ -94,13 +84,18 @@ class App extends React.Component {
     } else if (this.state.view === 'add') {
       return <AddRecipe user={this.state.username}/>
     } else {
-      return <Selection selectRecipe={this.selectRecipe} recipes={this.state.recipes} user={this.state.username}/>
+      return <Selection selectRecipe={this.selectRecipe} recipes={this.state.recipes} setRecipes={this.setRecipes} user={this.state.username}/>
     }
   }
   
   render() {
     if (this.state.view === 'login') {
-      return <SignIn afterSignIn={this.handleSignIn}/>
+      return (
+        <div>
+          <h1>CookBuk</h1>
+          <SignIn afterSignIn={this.handleSignIn}/>
+        </div>
+      )
     } else {
       return (
         <div>
