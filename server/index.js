@@ -13,16 +13,18 @@ app.use(bodyParser.urlencoded());
 app.use(express.static(__dirname + '/../client/'));
 
 
-app.get('/', (req, res) => {
-  console.log(req.body);
+app.post('/recipes', (req, res) => {
+  db.find({username: req.body.username}, (err, recipes) => {
+    if (err) {
+      console.log(`${req.body.username} not found`);
+    } else {
+      res.send(recipes);
+    }
+  })
 });
 
 // app.get('/recipe', (req, res) => {
 //   res.send('Sending back for /recipe');
-// });
-
-// app.get('/homepage', (req, res) => {
-//   res.end('GET request initiated!');
 // });
 
 app.post('/recipe', (req, res) => {
