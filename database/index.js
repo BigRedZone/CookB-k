@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/cookbook', { useNewUrlParser: true });
 
 const recipeSchema = mongoose.Schema({
+  username: String,
   name: String,
   ingredients: String,
   steps: String,

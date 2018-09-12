@@ -6,15 +6,7 @@ class AddRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // recipes: ['Spaghetti', 'Cereal', 'Korean BBQ', 'Sushi'],
-      // recipe: {
-      //   name: 'Spaghetti',
-      //   ingredients: ['Linguini', 'Pasta Sauce', 'Ground Beef'],
-      //   steps: ['Add water to a pot', 'Heat pot until boiling', 'Add Linguini', 'Stir for 20 minutes', 'Drain water', 'Add Pasta Sauce', 'Add Ground Beef', 'Stir'],
-      //   cookTime: '21 minutes',
-      //   prepTime: '10 minutes',
-      //   servings: '2 servings'
-      // },
+      username: this.props.user,
       name: '',
       ingredients: [],
       steps: [],
@@ -25,8 +17,6 @@ class AddRecipe extends React.Component {
       step: '',
       servings: '',
     }
-    //this.setRecipes = this.setRecipes.bind(this);
-    //this.setRecipe = this.setRecipe.bind(this);
     this.setName = this.setName.bind(this);
     this.setIngredients = this.setIngredients.bind(this);
     this.setSteps = this.setSteps.bind(this);
@@ -40,33 +30,6 @@ class AddRecipe extends React.Component {
     this.submitRecipe = this.submitRecipe.bind(this);
     this.post = this.post.bind(this);
   }
-
-  // Initialize
-  componentDidMount() {
-    // this.getRecipes();
-  }
-
-  // GET requests
-  // getRecipes() {
-  //   this.fetch('/homepage', this.setRecipes);
-  // }
-
-  // getRecipe() {
-  //   this.fetch('/recipe', this.setRecipe);
-  // }
-
-  //Set States
-  // setRecipes(data) {
-  //   this.setState({
-  //     recipes: data
-  //   });
-  // }
-
-  // setRecipe(data) {
-  //   this.setState({
-  //     recipe: data
-  //   });
-  // }
 
   setName(e) {
     this.setState({
@@ -116,26 +79,13 @@ class AddRecipe extends React.Component {
     })
   }
 
-  //AJAX GET Request
-  fetch(url, callback) {
-    $.ajax({
-      type: 'GET',
-      url: url
-    })
-    .done((data) => {
-      callback(data);
-      console.log('GET SUCCESS');
-    })
-    .fail(() => {
-      console.log('GET FAILED');
-    });
-  }
-
   undoIngredients() {
     let newIngredients = this.state.ingredients.slice(0, -1);
     this.setState({
       ingredients: newIngredients
     })
+    console.log(this.props);
+    console.log(this.props.user);
   }
 
   undoSteps() {
@@ -146,7 +96,9 @@ class AddRecipe extends React.Component {
   }
 
   submitRecipe() {
+    console.log(this.state.username);
     let recipe = {
+      username: this.state.username,
       name: this.state.name,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
@@ -154,10 +106,10 @@ class AddRecipe extends React.Component {
       prepTime: this.state.prepTime,
       servings: this.state.servings
     }
+    console.log(recipe);
     this.post('/recipe', recipe);
   }
 
-  //AJAX POST Request
   post(url, data) {
     $.ajax({
       type: 'POST',
