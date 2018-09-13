@@ -14,6 +14,7 @@ class Steps extends React.Component {
     this.clickPrev = this.clickPrev.bind(this);
     this.clickFirst = this.clickFirst.bind(this);
     this.clickLast = this.clickLast.bind(this);
+    this.clickExit = this.clickExit.bind(this);
   }
 
   clickNext() {
@@ -52,6 +53,10 @@ class Steps extends React.Component {
     });
   }
 
+  clickExit() {
+    this.props.changeView('overview');
+  }
+
   render() {
 
     return (
@@ -69,7 +74,7 @@ class Steps extends React.Component {
         <button onClick={this.clickPrev}>Prev.</button>
         <button onClick={this.clickNext}>Next</button>
         <button onClick={this.clickLast}>Last</button>
-        <a href="/">Exit</a>
+        <button onClick={this.clickExit}>Exit</button>
       </div>
     )
   }

@@ -119,7 +119,7 @@ class EditDeleteRecipe extends React.Component {
   render() {
     return (
       <div>
-        <h3>CookBuk</h3>
+        <h1>Shake Things Up!</h1>
         <input type="text" id="recipeName" onChange={(e) => this.nameHandler(e.target.value)}value={this.state.name}/>
         <div>
           <h4>Recipe Overview</h4>

@@ -5,6 +5,7 @@ class Selection extends React.Component {
   constructor(props) {
     super(props);
     this.post = this.post.bind(this);
+    console.log('this is this.props', this.props);
   }
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class Selection extends React.Component {
   render () {
     return (
       <div id='selection'>
-        <h3>Welcome {this.props.user.split(' ')[0]}</h3>
+        <h1>Welcome {this.props.user.split(' ')[0]}</h1>
         {
           this.props.recipes.map((recipe) => 
             <div class='recipe'>

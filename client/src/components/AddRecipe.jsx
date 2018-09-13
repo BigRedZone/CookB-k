@@ -106,6 +106,7 @@ class AddRecipe extends React.Component {
       servings: this.state.servings
     }
     this.post('/recipe', recipe);
+    this.props.changeView('selection');
   }
 
   post(url, data) {
@@ -126,7 +127,7 @@ class AddRecipe extends React.Component {
     return (
       <div>
         <div>
-          <h1>CookBük</h1>
+          <h1>Add a Recipe!</h1>
           <form>
             Recipe Name: <input type="text" onChange={(e)=> {this.setName(e)}}/><br/><br/>
             Cook Time: <input type="text" onChange={(e) => {this.setCookTime(e)}}/><br/><br/>
