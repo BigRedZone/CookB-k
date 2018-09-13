@@ -7,11 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "sampleData": "node database/sampleData.js"
+    "sampleData": "node database/sampleData.js",
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BigRedZone/CookBuk.git"
+  },
+  "engines": {
+    "node": "8.11.3"
   },
   "keywords": [],
   "author": "",

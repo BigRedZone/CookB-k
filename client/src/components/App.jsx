@@ -80,7 +80,7 @@ class App extends React.Component {
 
   renderComponent() {
     if (this.state.view === 'overview') {
-      return <Recipe recipe={this.state.recipe}/>
+      return <Recipe username={this.state.username} selectRecipe= {this.selectRecipe}recipe={this.state.recipe} setRecipes={this.setRecipes}changeAppView={this.changeView}/>
     } else if (this.state.view === 'add') {
       return <AddRecipe user={this.state.username}/>
     } else {

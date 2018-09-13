@@ -28,8 +28,11 @@ class Recipe extends React.Component {
     } else if (this.state.view === 'edit') {
       return (<EditDeleteRecipe
         recipe={this.props.recipe}
-        clickSubmit={this.clickEdit}
-        changeView={this.changeView}/>)
+        selectRecipe={this.props.selectRecipe}
+        username={this.props.username}
+        setRecipes={this.props.setRecipes}
+        changeAppView={this.props.changeAppView}changeView={this.changeView}/>
+        )
     } else {
       return (
         <div>
@@ -38,13 +41,13 @@ class Recipe extends React.Component {
           <div>
             <h4>Recipe Overview</h4>
             <h3>This Recipe Includes...</h3>
-            <p>{this.props.recipe.ingredients.join(', ')}</p>
+            <p>{this.props.recipe.ingredients}</p>
             <h3>Prep Time</h3>
             <p>{this.props.recipe.prepTime}</p>
             <h3>Cook Time</h3>
             <p>{this.props.recipe.cookTime}</p>
             <h3>Servings</h3>
-            <p>xxx mins</p>
+            <p>{this.props.recipe.servings}</p>
           </div>
           <div>
             <button onClick={() => this.changeView('steps')}>Start</button><br/><br/>
