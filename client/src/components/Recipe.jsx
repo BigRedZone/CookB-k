@@ -37,8 +37,8 @@ class Recipe extends React.Component {
         )
     } else {
       return (
-        <div>
-          <h1>{this.props.recipe.name}</h1>
+        <div id='recipe-container'>
+          <h1 id='recipe-title'>{this.props.recipe.name}</h1>
           <div>
             <h4>Recipe Overview</h4>
             <h3>This Recipe Includes...</h3>
@@ -51,8 +51,8 @@ class Recipe extends React.Component {
             <p>{this.props.recipe.servings}</p>
           </div>
           <div>
-            <button onClick={() => this.changeView('steps')}>Start</button><br/><br/>
-            <button onClick={() => this.changeView('edit')}>Edit</button>
+            <button className='recipe-start-button' onClick={() => this.changeView('steps')}>Start</button><br/><br/>
+            <button className='recipe-edit-button' onClick={() => this.changeView('edit')}>Edit</button>
           </div>
         </div>
       );

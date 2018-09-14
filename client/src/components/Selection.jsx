@@ -33,17 +33,17 @@ class Selection extends React.Component {
     return (
       <div id='selection-container'>
         {
-          this.props.recipes.map((recipe) =>
-            <div class='selection-recipe'>
-              <h1 class='selection-recipe-name' onClick={() => this.props.selectRecipe(recipe)}>{recipe.name}</h1>
-              <span>Time To Prep: {recipe.prepTime} </span><br/>
-              <span>Time To Cook:{recipe.cookTime} </span><br/>
-              <span>Servings: {recipe.servings}</span><br/>
+          this.props.recipes.map((recipe, i) =>
+            <div className='selection-recipe' key={i}>
+              <h1 className='selection-recipe-name' onClick={() => this.props.selectRecipe(recipe)}>{recipe.name}</h1>
+              <span className='selection-span'>Time To Prep: {recipe.prepTime} </span><br/>
+              <span className='selection-span'>Time To Cook:{recipe.cookTime} </span><br/>
+              <span className='selection-span'>Servings: {recipe.servings}</span><br/>
             </div>
           )
         }
       </div>
-    )
+    );
   }
 }
 

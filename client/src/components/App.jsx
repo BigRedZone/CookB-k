@@ -120,13 +120,13 @@ class App extends React.Component {
     } else {
       let myComponent;
       if (this.state.recipes.length > 0) {
-        myComponent = <KitchenAssistant recipeList={this.state.recipes} user={this.state.username}/>;
+        myComponent = <KitchenAssistant recipeList={this.state.recipes} user={this.state.username} handleCommand={this.changeView}/>;
       } else {
         myComponent = null;
       }
       return (
         <div>
-          <h2>CookBük</h2>
+          <h2 className="nav-logo" onClick={() => this.changeView('home')}>CookBük</h2>
           <ul id='nav-menu'>
             <li className={this.state.view === 'home' ? 'nav-selected' : 'nav-unselected'}><a onClick={() => this.changeView('home')}>Home</a></li>
             <li className={this.state.view === 'add' ? 'nav-selected' : 'nav-unselected'}><a onClick={() => this.changeView('add')}>Create</a></li>

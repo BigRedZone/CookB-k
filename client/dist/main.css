@@ -1,8 +1,178 @@
 body {
   background: #00b7e4;
+  background-image: url('img/apple-bright-carrots.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background-attachment: scroll;*/
   font-family: Amaranth, sans-serif;
+  font-size: 18px;
   color: white;
   text-align: center;
+}
+
+/********************
+Default Header Styles
+********************/
+
+h2 {
+  padding-top: 15px;
+}
+
+h3, h4, p {
+  color: #fff;
+}
+
+p {
+  padding-bottom: 15px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.selection-span {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.nav-logo {
+  font-size: 56px;
+  margin: 0;
+}
+
+/*.assistant-welcome {
+  color: #94ddf1;
+}*/
+
+/*.tagline-span {
+  color: #00b7e4;
+}*/
+
+/********************
+Link Styles
+********************/
+
+.steps-exit-link {
+  text-decoration: underline;
+}
+
+/********************
+Button Styles
+********************/
+
+input {
+  background-color: #fcfeff;
+  border: none;
+  border-radius: 5px;
+  color: #94ddf1;
+  padding: 5px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button,
+.submit-button,
+#submit-recipe-button,
+.assistant-selected {
+    background-color: #fcfeff;
+    border: none;
+    border-radius: 5px;
+    color: #8c92ac;
+    padding: 5px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+.submit-button {
+  margin-right: 150px;
+}
+
+.submit-button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+#submit-recipe-button {
+  margin-top: 50px;
+  margin-right: 125px;
+}
+
+#submit-recipe-button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+.recipe-edit-button {
+  margin-bottom: 15px;
+}
+
+.recipe-edit-button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+
+.steps-button {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.steps-button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+.steps-button-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.undo-steps-button {
+  margin-bottom: 30px;
+}
+
+.undo-steps-button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+.assistant-button {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.assistant-button:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+.assistant-unselected {
+  background-color: #94ddf1;
+  border: none;
+  border-radius: 5px;
+  color: #fcfeff;
+  padding: 5px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.assistant-selected:hover {
+  background-color: #94ddf1;
+  color: white;
+}
+
+.assistant-selected,
+.assistant-unselected {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /********************
@@ -10,6 +180,7 @@ Signin Styles
 ********************/
 
 #signin-container {
+  padding-top: 2.5%;
   margin: 15%;
 }
 
@@ -69,13 +240,15 @@ Selection Styles
 
 .selection-recipe {
   padding-bottom: 5px;
-  border: solid;
+  /*border: solid;*/
   border-radius: 5px;
-  background: #cdeff7;
+  background: #8c92ac;
+  /*background-color: rgba(0, 183, 228, 0.5);*/
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 50%;
+  width: 30%;
+  height: 50%;
   text-align: center;
 }
 
@@ -83,9 +256,15 @@ span {
   color: #52cbea;
 }
 
+.selection-span {
+  color: #fcfeff;
+}
+
 .selection-recipe-name {
   margin-top: 0%;
   margin-bottom: 0%;
+  color: #333647;
+  font-size: 24px;
 }
 
 .selection-recipe-name:hover {
@@ -97,33 +276,122 @@ Add Recipe Styles
 ********************/
 
 #add-recipe-container {
+  display: flex;
+  justify-content: space-around;
   margin: auto;
-  border: solid;
+  /*border: solid;*/
   border-radius: 5px;
-  border-color: #94ddf1;
+  /*border-color: #fcfeff;*/
+  color: #fcfeff;
   width: 50%;
-  background: #cdeff7;
+  background: #8c92ac;
 }
 
 .add-recipe-form {
   padding-top: 30px;
   padding-bottom: 30px;
-  text-align: left;
+  text-align: right;
 }
 
 .add-recipe-input {
-  padding-left: 30px;
+  padding-left: 100px;
 }
 
+.add-recipe-text {
+  margin-right: 150px;
+}
 
+.add-recipe-preview {
+  padding-top: 30px;
+  padding-right: 30px;
+  text-align: left;
+}
 
+.add-recipe-ingredients {
+  padding-top: 15px;
+}
 
+.add-recipe-steps {
+  padding-top: 15px;
+}
 
+/********************
+Recipe Styles
+********************/
 
+#recipe-container {
+  margin: auto;
+  margin-top: 10px;
+  /*border: solid;*/
+  border-radius: 5px;
+  /*border-color: #fcfeff;*/
+  color: #00b7e4;
+  width: 40%;
+  background: #8c92ac;
+}
 
+#recipe-container h3 {
+  color: #333647;
+}
 
+#recipe-title {
+  padding-top: 30px;
+  color: #fff;
+}
 
+/********************
+Steps Styles
+********************/
 
+#steps-container {
+  margin: auto;
+  margin-top: 10px;
+  /*border: solid;*/
+  border-radius: 5px;
+  /*border-color: #fcfeff;*/
+  color: #fcfeff;
+  width: 30%;
+  height: 75%;
+  background: #8c92ac;
+}
+
+/********************
+Edit Styles
+********************/
+
+.edit-container {
+  margin: auto;
+  margin-top: 10px;
+  /*border: solid;*/
+  border-radius: 5px;
+  /*border-color: #fcfeff;*/
+  color: #00b7e4;
+  width: 40%;
+  background: #8c92ac;
+}
+
+#recipe-name,
+#submit-changes,
+#cancel-changes,
+#delete-recipe {
+  margin-top: 30px;
+}
+
+#delete-recipe {
+  margin-bottom: 30px;
+}
+
+textarea {
+  margin: auto;
+  margin-top: 10px;
+  /*border: solid;*/
+  border-radius: 5px;
+  border-color: #fcfeff;
+  color: #94ddf1;
+  width: 40%;
+  background: #fcfeff;
+  font-size: 16px;
+}
 
 
 

@@ -120,27 +120,29 @@ class EditDeleteRecipe extends React.Component {
     return (
       <div>
         <h1>Shake Things Up!</h1>
-        <input type="text" id="recipeName" onChange={(e) => this.nameHandler(e.target.value)}value={this.state.name}/>
-        <div>
-          <h4>Recipe Overview</h4>
-          <h3>This Recipe Includes...</h3>
-          <textarea type="text" id="ingredientsInput" rows="10" cols="35" onChange={(e) => this.ingredientsHandler(e.target.value)} value={this.state.ingredients}/>
-          <h3>Prep Time</h3>
-          <input type="text" id="prepTimeInput" onChange={(e) => this.prepTimeHandler(e.target.value)} value={this.state.prepTime}/>
-          <h3>Cook Time</h3>
-          <input type="text" id="cookTimeInput" onChange={(e) => this.cookTimeHandler(e.target.value)} value={this.state.cookTime}/>
-          <h3>Servings</h3>
-          <input type="text" id="servingsInput" onChange={(e) => this.servingsHandler(e.target.value)} value={this.state.servings}/>
-          <h3>Steps</h3>
-          <textarea type="text" rows="10" cols="35" id="stepsInput" onChange={(e) => this.stepsHandler(e.target.value)} value={this.state.steps}/>
+        <div className="edit-container">
+          <input type="text" id="recipe-name" onChange={(e) => this.nameHandler(e.target.value)}value={this.state.name}/>
+          <div>
+            <h4>Recipe Overview</h4>
+            <h3>This Recipe Includes...</h3>
+            <textarea type="text" id="ingredientsInput" rows="10" cols="35" onChange={(e) => this.ingredientsHandler(e.target.value)} value={this.state.ingredients}/>
+            <h3>Prep Time</h3>
+            <input type="text" id="prep-time-input" onChange={(e) => this.prepTimeHandler(e.target.value)} value={this.state.prepTime}/>
+            <h3>Cook Time</h3>
+            <input type="text" id="cook-time-input" onChange={(e) => this.cookTimeHandler(e.target.value)} value={this.state.cookTime}/>
+            <h3>Servings</h3>
+            <input type="text" id="servings-input" onChange={(e) => this.servingsHandler(e.target.value)} value={this.state.servings}/>
+            <h3>Steps</h3>
+            <textarea type="text" rows="10" cols="35" id="steps-input" onChange={(e) => this.stepsHandler(e.target.value)} value={this.state.steps}/>
+          </div>
+          <div>
+            <button id="submit-changes" onClick={() => this.submitClickHandler()}>Submit Changes</button>
+          </div>
+          <div>
+            <button id="cancel-changes" onClick={() => this.handleCancelClick()}>Cancel Changes</button>
+          </div>
+          <button id="delete-recipe" onClick={() => this.deleteHandler()}>Delete Recipe</button>
         </div>
-        <div>
-          <button id="submitChanges" onClick={() => this.submitClickHandler()}>Submit Changes</button>
-        </div>
-        <div>
-          <button id="cancelChanges" onClick={() => this.handleCancelClick()}>Cancel Changes</button>
-        </div>
-        <button id="deleteRecipe" onClick={() => this.deleteHandler()}>Delete Recipe</button>
       </div>
     )
   }
