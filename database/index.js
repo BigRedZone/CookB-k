@@ -5,8 +5,8 @@ mongoose.connect('mongodb://nathanong12:nathanong12@ds149682.mlab.com:49682/cook
 const recipeSchema = mongoose.Schema({
   username: String,
   name: String,
-  ingredients: String,
-  steps: String,
+  ingredients: [String],
+  steps: [String],
   prepTime: String,
   cookTime: String,
   servings: String

@@ -25,7 +25,7 @@ class App extends React.Component {
     this.selectRecipe = this.selectRecipe.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
-    this.manageIngredientsAndSteps = this.manageIngredientsAndSteps.bind(this);
+    // this.manageIngredientsAndSteps = this.manageIngredientsAndSteps.bind(this);
     // this.getRecipes = this.getRecipes.bind(this);
   }
 
@@ -33,42 +33,54 @@ class App extends React.Component {
     this.setState({
       view: view
     });
+    this.render()
   }
 
   setRecipes(data) {
     let allRecipes = data.map((recipe) => {
+      // if (!recipe.ingredients) {
+      //   recipe.ingredients = '';
+      // }
+      // if (!recipe.steps) {
+      //   recipe.steps = '';
+      // }
       let newRecipe = {
         name: recipe.name,
         cookTime: recipe.cookTime,
         prepTime: recipe.prepTime,
-        servings: recipe.servings
+        servings: recipe.servings,
+        ingredients: recipe.ingredients ?
+                     recipe.ingredients : '',
+        steps: recipe.steps ?
+               recipe.steps : ''
       }
-      return this.manageIngredientsAndSteps(recipe.ingredients, recipe.steps, newRecipe)
+      return newRecipe
+      // return this.manageIngredientsAndSteps(recipe.ingredients, recipe.steps, newRecipe)
     })
     this.setState({
       recipes: allRecipes
     });
-    console.log(this.state.recipes);
   }
 
-  manageIngredientsAndSteps(ingredients, steps, newRecipe) {
-    if (steps.split(',') && ingredients.split(',')) {
-      newRecipe.ingredients = ingredients.split(',');
-      newRecipe.steps = steps.split(',');
-    } else if (steps.split(',')) {
-      newRecipe.ingredients = ingredients;
-      newRecipe.steps = steps.split(',');
-    } else if (ingredients.split(',')) {
-      newRecipe.ingredients = ingredients.split(',');
-      newRecipe.steps = steps;
-    } else {
-      newRecipe.ingredients = ingredients;
-      newRecipe.steps = steps;
-    }
-    return newRecipe;
-  }
+  // manageIngredientsAndSteps(ingredients, steps, newRecipe) {
+  //   if (steps.split(',') && ingredients.split(',')) {
+  //     newRecipe.ingredients = ingredients.split(',');
+  //     newRecipe.steps = steps.split(',');
+  //   } else if (steps.split(',')) {
+  //     newRecipe.ingredients = ingredients;
+  //     newRecipe.steps = steps.split(',');
+  //   } else if (ingredients.split(',')) {
+  //     newRecipe.ingredients = ingredients.split(',');
+  //     newRecipe.steps = steps;
+  //   } else {
+  //     newRecipe.ingredients = ingredients;
+  //     newRecipe.steps = steps;
+  //   }
+  //   return newRecipe;
+  // }
 
   selectRecipe(recipe) {
+    console.log(recipe);
     this.setState({
       recipe: recipe
     });
@@ -99,7 +111,7 @@ class App extends React.Component {
 
   renderComponent() {
     if (this.state.view === 'overview') {
-      return <Recipe username={this.state.username} selectRecipe= {this.selectRecipe}recipe={this.state.recipe} setRecipes={this.setRecipes}changeAppView={this.changeView}/>
+      return <Recipe username={this.state.username} selectRecipe= {this.selectRecipe} recipe={this.state.recipe} setRecipes={this.setRecipes} changeAppView={this.changeView}/>
     } else if (this.state.view === 'add') {
       return <AddRecipe user={this.state.username} changeView={this.changeView}/>
     } else {
@@ -116,7 +128,7 @@ class App extends React.Component {
           <SignIn afterSignIn={this.handleSignIn} changeView={this.changeView}/>
         </div>
       )
-    } 
+    }
       return (
         <div>
           <h2 className="nav-logo" onClick={() => this.changeView('home')}>CookBük</h2>

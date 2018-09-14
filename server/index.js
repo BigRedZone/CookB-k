@@ -6,7 +6,12 @@ const bodyParser = require('body-parser');
 
 const db = require('../database/index.js');
 
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Acces-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
@@ -29,7 +34,7 @@ app.post('/recipes', (req, res) => {
 // });
 
 app.post('/recipe', (req, res) => {
-  db.find({name: req.body.name}, function(err, recipes) {
+  db.find({name: req.body.name, username: req.body.username}, function(err, recipes) {
     if (err) {
       console.log(err)
     } else if (recipes.length === 0) {
@@ -44,7 +49,13 @@ app.post('/recipe', (req, res) => {
       console.log(`${req.body.name} already exists in database!`);
     }
   })
-  res.end('POST request initiated!');
+  db.find({username: req.body.username}, (err, recipes) => {
+    if (err) {
+      console.log(`${req.body.username} not found`);
+    } else {
+      res.send(recipes);
+    }
+  })
 });
 
 app.put('/edit', (req, res) => {
