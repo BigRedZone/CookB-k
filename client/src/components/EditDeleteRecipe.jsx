@@ -29,7 +29,7 @@ class EditDeleteRecipe extends React.Component {
     var context = this;
     $.ajax({
       type: 'PUT',
-      url: 'http://localhost:3000/edit',
+      url: '/edit',
       data: {name: targetRecipe, change: editedRecipe}
     })
     .done((recipe) => {
@@ -45,7 +45,7 @@ class EditDeleteRecipe extends React.Component {
     var context = this;
     $.ajax({
       type: 'Delete',
-      url: 'http://localhost:3000/delete',
+      url: '/delete',
       data: {name: targetRecipe, username: username}
     })
     .done((data) => {
@@ -67,10 +67,13 @@ class EditDeleteRecipe extends React.Component {
     }
   }
   submitClickHandler() {
-
-    this.updateRecipe(this.props.recipe.name, this.state);
-    // this.props.selectRecipe(this.props.recipe);
-    // this.props.changeView('')
+    if (this.state.name) {
+      this.updateRecipe(this.props.recipe.name, this.state);
+      // this.props.selectRecipe(this.props.recipe);
+      // this.props.changeView('')
+    } else {
+      alert('Must fill out name form!')
+    }
   }
 
   nameHandler(event) {
