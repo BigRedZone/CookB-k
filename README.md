@@ -9,73 +9,16 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
-
-## Usage
-
-### Getting Started
-
-* 1. Go to the assigned server's url.
-* 2. Once there you'll be prompted to sign in with a Google account before you can access anything else
-* 3. After signing in the app will retrieve all recipes that have been assigned to your name
-* 4. You have the option to:
-    - Select a recipe
-    - Create a new recipe
-    - Log out
-
-### Adding A New Recipe
-
-* 1. From the home page click on the create button
-* 2. On this page you may fill out whichever fields you please, but the name of the recipe is a required field!
-* 3. Ingredients and steps must be added one at a time
-* 4. You may remove the last input of either ingredients or steps by clicking the undo button under each of their respective categories on the right side
-* 5. Once you are finished with all inputs, simply click "Add Recipe!" and the recipe will be added
-    - This will also bring you back to the homepage showing all of your recipes with the most recently added one at the bottom
-
-
-### Selecting A Recipe
-
-* 1. From the home page click on the title of a recipe
-* 2. This will bring you to the overview of the selected recipe, which will show the following information:
-    - The title
-    - The ingredients required for each recipe
-    - The amount of time a recipe may take to prepare
-    - The amount of time a recipe may take to cook
-    - The amount of servings the recipe aims to provide
-* 3. Within this page you are also given access to either start the selected recipe or edit it
-
-### Editing A Recipe
-
-* 1. From the recipe overview page, click on Edit
-* 2. This will bring you to the edit page, with the following fields
-    - The title
-        - This is the only required field that needs to be filled
-    - Ingredients involved with the recipe
-        - Each ingredient should be separated by a comma
-    - The preparation time
-    - The cook time
-    - The amount of servings the recipe expects to make
-    - The steps involved in making this recipe
-        - Each step should be separated by a comma
-
-### Starting A Recipe
-
-* 1. From the recipe overview page, click on Start
-* 2. This will bring you to the beginning of the steps page
-* 3. You are given the choice of manually going through each step, OR activating voice commands by clicking Start Kitchen Assistant
-    - Manually:
-      - To go to the next step, click Next
-      - To go to the previous step, click Prev.
-      - To go to the first step, click First
-      - To go to the last step, click Last
-      - To go exit the recipe, click Exit
-    - Voice Commands:
+2. [Getting Started](#getting-started)
+3. [Usage](#usage)
+  - [Client Side] (#client-side)
+  - [Server Side] (#server-side)
+  - [Database Side] (#database)    
+3. [Development](#development)
+  - [Tasks](#tasks)
+4. [Team](#team)
+5. [Contributing](#contributing)
 
 ## Requirements
 
@@ -103,17 +46,144 @@
 * webpack-cli: 3.1.0,
 * webpack-dev-server: 3.1.7
 
-## Development
+## Getting Started
 
-### Installing Dependencies
+1. Installation
+Install all dependencies within package.json using the command:
 
-From within the root directory type in the following code:
-
-```
+```bash
 npm install
 ```
+2. Setup Local Host
+Run the following scripts to setup environment:
 
-### Roadmap
+```bash
+mongod
+npm run react-dev
+npm run server-dev
+```
+
+3. Setup Database
+../database/sampleData.js
+- Ensure sample data is refactored to everyone's Google's OAuth Name
+> ex. Taehwan Lim, Nathan Vang
+- After refactoring sampleData to be usable by you and/or your group, run the following script to create sample data:
+
+```bash
+npm run sampleData
+```
+
+This will fill your database with sample data formatted in the way that is used across the client, server, and database
+__CAREFUL__: running the sample data script more than once will result in duplicate recipes
+
+## Usage
+
+
+### Client Side
+
+React Components State Management
+- Index.jsx
+  - App.jsx
+    - AddRecipe.jsx
+    - Selection.jsx
+    - SignIn.jsx
+    - Recipe.jsx
+        - EditDeleteRecipe.jsx
+        - Steps.jsx
+            - KitchenAssistant.jsx
+                - ArtyomCommands.js
+
+React Components General Info
+1. AddRecipe.jsx
+Add new recipes to database
+2. App.jsx
+Main component
+3. EditDeleteRecipe.jsx: 
+Edit and Delete recipes in database
+4. KitchenAssistant.jsx: 
+Initialize for Artyom voice commands
+5. Recipe.jsx: 
+Overview of selected recipe
+6. Selection.jsx:
+List of all recipes for user
+7. SignIn.jsx
+OAuth for Google SignIn
+8. Steps.jsx
+Steps for selected recipe
+9. ArtyomCommands.js 
+Voice commands for Artyom
+
+### Server Side
+
+Everything related to the server can be found within the index.js file of the server directory. For this app we have chosen to proceed with the Express framework for Node.js.
+
+Along with express, we implemented bodyParser as a middleware to help with receiving data from the client side.
+
+Within the server file, you will notice that we utilize 4 requests to different endpoints:
+
+```
+app.post('/recipes', ...)
+
+app.post('/recipe', ...)
+
+app.put('/edit', ...)
+
+app.delete('/delete', ...)
+```
+#### Post request to recipes
+
+This request is executed in order to retrieve the recipes using the data being sent with the request as a means to query through the database - in our case it was the username being sent from the client side
+
+It is only accessed through the App component
+
+#### Post request to recipe
+
+This request is executed when a new recipe has been submitted from the client side within the AddRecipe component
+
+#### Put request to edit
+
+This request is executed when a current recipe has been edited from the client side within the EditDeleteRecipe component
+
+#### Delete request to delete
+
+This request is executed when a current recipe has been deleted from the client side within the EditDeleteRecipe component
+
+### Database
+
+The database being used is MongoDB with Mongoose providing the ODM environment. Initially the database will connect to a valid cloud database, otherwise it will connect to the local database.
+
+The schema for each recipe is really simple, as it takes the following as strings:
+  * username
+  * name
+  * prepTime
+  * cookTime
+  * servings
+And the following are arrays:
+  * ingredients
+  * steps    
+
+What is exported out of this file is only the model. All querying is done server side!
+
+## Development
+
+1. Artyom dictates all steps for selected recipe, not just first step.
+2. Friends feature 
+    -Request and remove friends
+    -Share Recipes amongst friends
+    -Chat functionality 
+3. Inventory management of ingredients remaining in pantry
+    -Inform user if recipe is able to be made
+    -Inform user when stock of ingredient is low
+4. Make the app mobile-friendly 
+    - Progressive Web App
+    - React Native
+5. Add gesture recognition
+6. Add picture saving functionality to each recipe
+7. Dietary Information
+    - Recipes includes calories, protein, sodium, etc...
+
+
+## Roadmap
 
 View the project roadmap [here](https://waffle.io/BigRedZone/CookBuk) and [here] (https://drive.google.com/file/d/14bqOGESN1answPR3PCp6_TXR-Bo6dwyK/view?usp=sharing)
 
