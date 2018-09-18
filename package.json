@@ -9,7 +9,8 @@
     "server-dev": "nodemon server/index.js",
     "sampleData": "node database/sampleData.js",
     "start": "node server/index.js",
-    "postinstall": "webpack -d"
+    "postinstall": "webpack -d",
+    "lint": "eslint client/src"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,11 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
     "chai": "^4.1.2",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "mocha": "^5.2.0",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",

@@ -13,13 +13,10 @@ export default class KitchenAssistant extends React.Component {
     this.startAssistant = this.startAssistant.bind(this);
     this.stopAssistant = this.stopAssistant.bind(this);
     this.speakText = this.speakText.bind(this);
-    this.handleTextareaChange = this.handleTextareaChange.bind(this);
 
     // Prepare simple state
     this.state = {
       artyomActive: false,
-      textareaValue: "",
-      artyomIsReading: false
     };
 
     // Load some commands to Artyom using the commands manager
@@ -31,22 +28,22 @@ export default class KitchenAssistant extends React.Component {
     let _this = this;
     this.props.enableCommands();
 
-    console.log("Artyom succesfully started !", _this);
+    console.log('Artyom succesfully started !', _this);
 
     Assistant.initialize({
-      lang: "en-GB",
+      lang: 'en-GB',
       debug: true,
       continuous: true,
       soundex: true,
-      listen: true
+      listen: true,
     }).then(() => {
       // Display loaded commands in the console
       console.log(Assistant.getAvailableCommands());
 
-      Assistant.say("Hello, and welcome to your cookbook!");
+      Assistant.say('Hello, and welcome to your cookbook!');
 
       _this.setState({
-        artyomActive: true
+        artyomActive: true,
       });
     }).catch((err) => {
       console.error("Oopsy daisy, this shouldn't happen !", err);
@@ -58,7 +55,7 @@ export default class KitchenAssistant extends React.Component {
     this.props.disableCommands();
 
     Assistant.fatality().then(() => {
-      console.log("Assistant has been succesfully stopped");
+      console.log('Assistant has been succesfully stopped');
 
       _this.setState({
         artyomActive: false,
@@ -87,12 +84,6 @@ export default class KitchenAssistant extends React.Component {
           artyomIsReading: false,
         });
       },
-    });
-  }
-
-  handleTextareaChange(event) {
-    this.setState({
-      textareaValue: event.target.value,
     });
   }
 

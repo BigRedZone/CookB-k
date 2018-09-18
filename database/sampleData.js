@@ -1,5 +1,6 @@
-const db = require('../database/index.js');
 const mongoose = require('mongoose');
+const db = require('../database/index.js');
+
 mongoose.connect('mongodb://nathanong12:nathanong12@ds149682.mlab.com:49682/cookbook' || 'mongodb://localhost:27017/cookbook', { useNewUrlParser: true });
 
 const sampleData = [
@@ -10,7 +11,7 @@ const sampleData = [
     steps: 'boil water,throw in pasta,open can of tomato sauce, eat'.split(','),
     prepTime: '10 minutes',
     cookTime: '20 minutes',
-    servings: '5'
+    servings: '5',
   },
   {
     username: 'Taehwan Lim',
@@ -19,7 +20,7 @@ const sampleData = [
     steps: 'grind meats,encase links,toast bread,eat'.split(','),
     prepTime: '5 hrs',
     cookTime: '20 hrs',
-    servings: '365'
+    servings: '365',
   },
   {
     username: 'Taehwan Lim',
@@ -28,7 +29,7 @@ const sampleData = [
     steps: 'roll dough,sprinkle cheese,spread tomato sauce,eat'.split(','),
     prepTime: '24 hrs',
     cookTime: '30 hrs',
-    servings: 'over 9000'
+    servings: 'over 9000',
   },
   {
     username: 'nathan ong',
@@ -37,7 +38,7 @@ const sampleData = [
     steps: 'boil water,throw in pasta,open can of tomato sauce, eat'.split(','),
     prepTime: '10 minutes',
     cookTime: '20 minutes',
-    servings: '5'
+    servings: '5',
   },
   {
     username: 'nathan ong',
@@ -46,7 +47,7 @@ const sampleData = [
     steps: 'grind meats,encase links,toast bread,eat'.split(','),
     prepTime: '5 hrs',
     cookTime: '20 hrs',
-    servings: '365'
+    servings: '365',
   },
   {
     username: 'nathan ong',
@@ -55,7 +56,7 @@ const sampleData = [
     steps: 'roll dough,sprinkle cheese,spread tomato sauce,eat'.split(','),
     prepTime: '24 hrs',
     cookTime: '30 hrs',
-    servings: 'over 9000'
+    servings: 'over 9000',
   },
   {
     username: 'Nathan Vang',
@@ -64,7 +65,7 @@ const sampleData = [
     steps: 'boil water,throw in pasta,open can of tomato sauce, eat'.split(','),
     prepTime: '10 minutes',
     cookTime: '20 minutes',
-    servings: '5'
+    servings: '5',
   },
   {
     username: 'Nathan Vang',
@@ -73,7 +74,7 @@ const sampleData = [
     steps: 'grind meats,encase links,toast bread,eat'.split(','),
     prepTime: '5 hrs',
     cookTime: '20 hrs',
-    servings: '365'
+    servings: '365',
   },
   {
     username: 'Nathan Vang',
@@ -82,7 +83,7 @@ const sampleData = [
     steps: 'roll dough,sprinkle cheese,spread tomato sauce,eat'.split(','),
     prepTime: '24 hrs',
     cookTime: '30 hrs',
-    servings: 'over 9000'
+    servings: 'over 9000',
   },
   {
     username: 'Jhia Turner',
@@ -91,7 +92,7 @@ const sampleData = [
     steps: 'boil water,throw in pasta,open can of tomato sauce, eat'.split(','),
     prepTime: '10 minutes',
     cookTime: '20 minutes',
-    servings: '5'
+    servings: '5',
   },
   {
     username: 'Jhia Turner',
@@ -100,7 +101,7 @@ const sampleData = [
     steps: 'grind meats,encase links,toast bread,eat'.split(','),
     prepTime: '5 hrs',
     cookTime: '20 hrs',
-    servings: '365'
+    servings: '365',
   },
   {
     username: 'Jhia Turner',
@@ -113,16 +114,16 @@ const sampleData = [
   }
 ];
 
-const insertSampleRecipes = function() {
-  sampleData.forEach(recipe => {
+const insertSampleRecipes = () => {
+  sampleData.forEach(recipe => ({
     db.create(recipe).then((newRecipe) => {
       if (newRecipe) {
         console.log(`${newRecipe.name} inserted!`)
       } else {
         console.log('insert failed')
       }
-    })
-  });
+    });
+  }));
 };
 
 insertSampleRecipes();
