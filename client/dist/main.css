@@ -1,6 +1,6 @@
 body {
-  background: #00b7e4;
-  background-image: url('img/apple-bright-carrots.jpg');
+  background: #FBFBFB;
+  /* background-image: url('img/apple-bright-carrots.jpg'); */
   background-size: contain;
   background-repeat: no-repeat;
   background-size: cover;
@@ -39,6 +39,7 @@ p {
 }
 
 .nav-logo {
+  color: #37bc9b;
   font-size: 56px;
   margin: 0;
 }
@@ -219,12 +220,12 @@ Signin Styles
 #signin-title {
   font-size: 65px;
   margin-bottom: 0%;
-  color: #fcfeff;
+  color: #37bc9b;
 }
 
 #signin-tagline {
   margin-top: 1%;
-  color: #cdeff7;
+  color: #48cfad;
 }
 
 /*Google Login Button*/
@@ -237,6 +238,7 @@ Navigation Styles
 ********************/
 
 #nav-menu {
+  color: #B0B0B0;
   text-align: center;
   padding-left: 0;
 }
@@ -247,13 +249,13 @@ Navigation Styles
 }
 
 a:hover {
-  color: #94ddf1;
+  color: #48cfad;
 }
 
 .nav-selected {
   display: inline;
   margin: 15px;
-  color: #94ddf1;
+  color: #48cfad;
 }
 
 /********************
@@ -261,6 +263,9 @@ Selection Styles
 ********************/
 
 #selection-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   color: #fcfeff;
   text-align: center;
 
@@ -270,14 +275,15 @@ Selection Styles
   padding-bottom: 5px;
   /*border: solid;*/
   border-radius: 5px;
-  background: #8c92ac;
-  background-color: rgb(140,146,172, 0.8);
+  background: #fff;
+  background-color: rgb(255,255,255);
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 30%;
-  height: 50%;
+  width: 300px;
+  height: 350px;
   text-align: center;
+  box-shadow: 0 3px 3px rgba(0, 0, 0,.1);
 }
 
 span {
@@ -285,18 +291,19 @@ span {
 }
 
 .selection-span {
-  color: #fcfeff;
+  color: #B0B0B0;
 }
 
 .selection-recipe-name {
+  padding-top: 100px;
   margin-top: 0%;
   margin-bottom: 0%;
-  color: #333647;
+  color: #7E7E7E;
   font-size: 24px;
 }
 
 .selection-recipe-name:hover {
-  color: #94ddf1;
+  color: #48cfad;
 }
 
 /********************
